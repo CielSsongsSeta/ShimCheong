@@ -9,7 +9,10 @@ public class Controller : MonoBehaviour
     Rigidbody2D rigid;
     SpriteRenderer spriteRenderer;
 
-    bool bool_isHorizontal = false;
+    //벽이 감지되었음 WallDetect에서 관리
+    public bool detectWall;
+
+    
     // ray
     GameObject scanObject;
 
@@ -49,6 +52,7 @@ public class Controller : MonoBehaviour
             Debug.Log("오 스페이스 누름! This is :" + scanObject.name);
         }
     }
+
     public float detect_range = 1.5f;
     public float moveSpeed = 5.0f;
 
@@ -57,15 +61,18 @@ public class Controller : MonoBehaviour
         float h = Input.GetAxis("Horizontal");
         float v = Input.GetAxis("Vertical");
 
-        transform.position += new Vector3(h, 0, v) * moveSpeed * Time.deltaTime;
+        //Player의 이동조건
+        if(!detectWall)
+        {
+            transform.position += new Vector3(h, 0, v) * moveSpeed * Time.deltaTime;
+        }
 
-        //����׼�
-        Debug.DrawRay(GetComponent<Rigidbody2D>().position, new Vector3(direction * detect_range, 0, 0), new Color(0, 0, 1));
+        //Debug용 Ray 그리기
+        Debug.DrawRay(GetComponent<Rigidbody2D>().position, new Vector3(direction * detect_range, 0, 0), new Color(1, 0, 0));
 
-        //Layer�� Object�� ��ü�� rayHit_detect�� ���� 
+        //RaycasDetect
         RaycastHit2D rayHit_detect = Physics2D.Raycast(GetComponent<Rigidbody2D>().position, new Vector3(direction, 0, 0), detect_range, LayerMask.GetMask("obj_NPC"));
 
-        //�����Ǹ� scanObject�� ������Ʈ ���� 
         if (rayHit_detect.collider != null)
         {
             scanObject = rayHit_detect.collider.gameObject;

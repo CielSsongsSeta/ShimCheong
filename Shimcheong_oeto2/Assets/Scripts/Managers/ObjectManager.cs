@@ -143,19 +143,19 @@ public class ObjectManager : MonoBehaviour
         Save();
         Load();
 
-        //해당 키값을 가진 오브젝트 얻기
-        GetItem(1000);
-        GetItem(1001);
-        GetItem(1002);
+        ////해당 키값을 가진 오브젝트 얻기
+        //GetItem(1000);
+        //GetItem(1001);
+        //GetItem(1002);
 
-        GetClue(2003);
-        GetClue(2002);
-        GetClue(2001);
-        GetClue(2000);
+        //GetClue(2003);
+        //GetClue(2002);
+        //GetClue(2001);
+        //GetClue(2000);
 
-        //해당 키 값을 가진 오브젝트 제거
-        RemoveClue(2000);
-        RemoveItem(1000);
+        ////해당 키 값을 가진 오브젝트 제거
+        //RemoveClue(2000);
+        //RemoveItem(1000);
 
         //아이템 탭 기본으로 보여주기
         TabClick(curType);
@@ -310,23 +310,27 @@ public class ObjectManager : MonoBehaviour
     public void GetItem(int _key)
     {
         curItemList.Add(myItemList.Find(x => x.key == _key));
+        TabClick(curType);
     }
 
     //Key를 통해서 아이템 삭제
     public void RemoveItem(int _key)
     {
         curItemList.Remove(myItemList.Find(x => x.key == _key));
+        TabClick(curType);
     }
 
     //Key를 통해서 단서 얻기
     public void GetClue(int _key)
     {
         curClueList.Add(myClueList.Find(x => x.key == _key));
+        TabClick(curType);
     }
 
     //Key를 통해서 단서 삭제
     public void RemoveClue(int _key)
     {
         curClueList.Remove(myClueList.Find(x => x.key == _key));
+        TabClick(curType);
     }
 }
