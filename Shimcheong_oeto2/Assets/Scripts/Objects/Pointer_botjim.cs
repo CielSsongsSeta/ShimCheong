@@ -26,15 +26,16 @@ public class Pointer_botjim : MonoBehaviour
         if (Input.GetMouseButtonDown(0))
         {
             Debug.Log("ÀÌ°Ç Touch! Botjim!!!!");
-            bool_isBotjim = true;
-            if (bool_isBotjim = true)
+            //bool_isBotjim = true;
+            if (bool_isBotjim == true)
             {
                 images.SetActive(true);
+                bool_isBotjim = false;
             }
             else
             {
                 images.SetActive(false);
-                bool_isBotjim = false;
+                bool_isBotjim = true;
             }
         }
     }
